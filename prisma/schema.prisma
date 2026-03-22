@@ -1,0 +1,54 @@
+// ========================================
+// File: prisma/schema.prisma
+// ========================================
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ProductStatus {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+}
+
+enum ProductType {
+  STOCKED
+  DROPSHIP
+  ENQUIRY_ONLY
+}
+
+model Product {
+  id               String        @id @default(cuid())
+  name             String
+  slug             String        @unique
+  shortDescription String?
+  description      String?
+  brand            String
+  category         String
+  status           ProductStatus @default(DRAFT)
+  type             ProductType   @default(STOCKED)
+  pricePence       Int?
+  imageUrl         String?
+  isFeatured       Boolean       @default(false)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+}
+
+model Enquiry {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String
+  vehicle   String?
+  budget    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
