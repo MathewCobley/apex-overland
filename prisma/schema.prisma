@@ -1,10 +1,10 @@
 // ========================================
 // File: prisma/schema.prisma
+// FINAL — PRISMA 7 CONFIG MODE
 // ========================================
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
