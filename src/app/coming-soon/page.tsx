@@ -4,24 +4,20 @@
 
 export default function ComingSoonPage() {
     return (
-      <section className="relative min-h-screen flex items-center">
+      <section className="relative flex min-h-[calc(100dvh-7rem)] items-center">
         {/* Background image */}
         <img
           src="/hero.jpg"
           alt="Apex Overland"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover"
         />
   
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/65" />
   
         {/* Content */}
-        <div className="relative z-10 max-w-6xl mx-auto px-6 w-full">
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center rounded-full border border-white/20 bg-black/30 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-white/80 mb-6">
-              Coming Soon
-            </div>
-  
             {/* Logo */}
             <img
               src="/apex-mark.svg"
@@ -39,22 +35,22 @@ export default function ComingSoonPage() {
               Apex Overland is launching soon — premium overland gear and vehicle setups designed for real-world use.
             </p>
   
-            {/* CTAs */}
+            {/* CTA (premium version) */}
             <div className="flex flex-wrap gap-4">
               <a
                 href="mailto:hello@apexoverland.co.uk"
-                className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-md font-semibold text-black"
+                className={[
+                  "inline-flex items-center justify-center rounded-full",
+                  "px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em]",
+                  "text-white border border-[#D97706]/40",
+                  "bg-[#D97706]/10 backdrop-blur-sm",
+                  "ease-[cubic-bezier(0.22,1,0.36,1)]",
+                  "transition-[border-color,background-color,transform,box-shadow] duration-500",
+                  "hover:border-[#D97706]/70 hover:bg-[#D97706]/20",
+                  "hover:scale-[1.04] hover:shadow-[0_10px_30px_rgba(217,119,6,0.25)]",
+                ].join(" ")}
               >
                 Get in touch
-              </a>
-  
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noreferrer"
-                className="border border-white/30 px-6 py-3 rounded-md hover:bg-white/10 text-white"
-              >
-                Follow launch
               </a>
             </div>
           </div>
@@ -62,4 +58,3 @@ export default function ComingSoonPage() {
       </section>
     );
   }
-  
