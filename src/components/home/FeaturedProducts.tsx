@@ -5,13 +5,28 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
+type FeaturedProduct = {
+  id: string;
+  slug: string;
+  name: string;
+  imageUrl: string | null;
+  shortDescription: string | null;
+};
+
 export default async function FeaturedProducts() {
-  const products = await prisma.product.findMany({
+  const products: FeaturedProduct[] = await prisma.product.findMany({
     where: {
       category: "Roof Tents",
       status: "ACTIVE",
     },
     take: 4,
+    select: {
+      id: true,
+      slug: true,
+      name: true,
+      imageUrl: true,
+      shortDescription: true,
+    },
   });
 
   return (
@@ -33,7 +48,6 @@ export default async function FeaturedProducts() {
             className="group"
           >
             <div className="relative rounded-xl overflow-hidden bg-zinc-900">
-
               {/* Image */}
               <div className="aspect-square bg-black overflow-hidden">
                 <img
@@ -48,9 +62,7 @@ export default async function FeaturedProducts() {
 
               {/* Content */}
               <div className="absolute bottom-0 p-4">
-                <h3 className="font-semibold text-white">
-                  {product.name}
-                </h3>
+                <h3 className="font-semibold text-white">{product.name}</h3>
 
                 <p className="text-sm text-gray-300">
                   {product.shortDescription}
@@ -60,7 +72,6 @@ export default async function FeaturedProducts() {
                   Shop Now
                 </button>
               </div>
-
             </div>
           </Link>
         ))}
