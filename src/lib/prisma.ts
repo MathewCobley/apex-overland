@@ -1,15 +1,12 @@
 // ========================================
 // File: src/lib/prisma.ts
-// FINAL — CORRECT (NO datasourceUrl)
 // ========================================
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../generated/prisma";
 import { PrismaPg } from "@prisma/adapter-pg";
 import pg from "pg";
 
 const connectionString = process.env.DATABASE_URL;
-
-console.log("DB URL:", connectionString);
 
 if (!connectionString) {
   throw new Error("DATABASE_URL is not set");
@@ -28,7 +25,7 @@ const globalForPrisma = global as unknown as {
 export const prisma =
   globalForPrisma.prisma ??
   new PrismaClient({
-    adapter, // ✅ ONLY this
+    adapter,
   });
 
 if (process.env.NODE_ENV !== "production") {
