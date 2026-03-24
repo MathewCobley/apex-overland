@@ -45,7 +45,9 @@ export default async function ProductPage({ params }: Props) {
           </p>
 
           <div className="text-2xl font-semibold mb-6">
-            £{product.pricePence / 100}
+            {product.pricePence != null
+              ? `£${product.pricePence / 100}`
+              : "Price on request"}
           </div>
 
           <div className="flex gap-4">
